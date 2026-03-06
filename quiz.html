@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Quiz da Terra do Nunca</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(180deg,#021024,#063970);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+h1{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.quiz-box{
+background:rgba(0,0,0,0.5);
+padding:30px;
+border-radius:15px;
+max-width:600px;
+margin:auto;
+box-shadow:0 0 20px #00d9ff;
+}
+
+.pergunta{
+font-size:22px;
+margin-bottom:20px;
+}
+
+.opcoes button{
+display:block;
+width:100%;
+margin:10px 0;
+padding:12px;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+background:#00d9ff;
+color:black;
+transition:0.3s;
+}
+
+.opcoes button:hover{
+background:#00a6c4;
+transform:scale(1.05);
+}
+
+#proxima{
+margin-top:20px;
+padding:10px 20px;
+font-size:16px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#ffd700;
+color:black;
+display:none;
+}
+
+#resultado{
+margin-top:20px;
+font-size:22px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🧚 Quiz da Terra do Nunca</h1>
+
+<div class="quiz-box">
+
+<div id="pergunta" class="pergunta"></div>
+
+<div id="opcoes" class="opcoes"></div>
+
+<button id="proxima">Próxima pergunta</button>
+
+<div id="resultado"></div>
+
+</div>
+
+<script>
+
+const perguntas = [
+
+{
+pergunta: "Quem é o maior inimigo de Peter Pan?",
+opcoes: ["Capitão Gancho","Sininho","Wendy","Sr. Darling"],
+correta: 0
+},
+
+{
+pergunta: "Quem usa pó de fada para voar?",
+opcoes: ["Wendy","Sininho","Capitão Gancho","Michael"],
+correta: 1
+},
+
+{
+pergunta: "Onde Peter Pan vive?",
+opcoes: ["Londres","Terra do Nunca","Atlântida","Nárnia"],
+correta: 1
+},
+
+{
+pergunta: "Quem ajuda Peter Pan em suas aventuras?",
+opcoes: ["Meninos Perdidos","Piratas","Sereias","Gigantes"],
+correta: 0
+},
+
+{
+pergunta: "Quem conta histórias para os Meninos Perdidos?",
+opcoes: ["Sininho","Wendy","Capitão Gancho","Peter Pan"],
+correta: 1
+}
+
+]
+
+let indice = 0
+let pontuacao = 0
+
+const perguntaEl = document.getElementById("pergunta")
+const opcoesEl = document.getElementById("opcoes")
+const proximaBtn = document.getElementById("proxima")
+const resultadoEl = document.getElementById("resultado")
+
+function carregarPergunta(){
+
+proximaBtn.style.display = "none"
+
+let atual = perguntas[indice]
+
+perguntaEl.innerText = atual.pergunta
+
+opcoesEl.innerHTML = ""
+
+atual.opcoes.forEach((opcao,i)=>{
+
+let botao = document.createElement("button")
+botao.innerText = opcao
+
+botao.onclick = () => verificarResposta(i)
+
+opcoesEl.appendChild(botao)
+
+})
+
+}
+
+function verificarResposta(resposta){
+
+if(resposta === perguntas[indice].correta){
+pontuacao++
+}
+
+proximaBtn.style.display = "inline-block"
+
+}
+
+proximaBtn.onclick = () =>{
+
+indice++
+
+if(indice < perguntas.length){
+carregarPergunta()
+}else{
+mostrarResultado()
+}
+
+}
+
+function mostrarResultado(){
+
+perguntaEl.style.display = "none"
+opcoesEl.style.display = "none"
+proximaBtn.style.display = "none"
+
+let mensagem = ""
+
+if(pontuacao <= 2){
+mensagem = "🌟 Você ainda está começando a conhecer a Terra do Nunca!"
+}
+else if(pontuacao <=4){
+mensagem = "🧚 Você conhece bem as aventuras de Peter Pan!"
+}
+else{
+mensagem = "🏴‍☠️ Você é um verdadeiro especialista da Terra do Nunca!"
+}
+
+resultadoEl.innerHTML = `
+Sua pontuação: ${pontuacao} / ${perguntas.length} <br><br>
+${mensagem}
+`
+
+}
+
+carregarPergunta()
+
+</script>
+
+</body>
+</html>

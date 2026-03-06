@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<title>Mapa da Terra do Nunca</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0a0a2a;
+color:white;
+text-align:center;
+}
+
+/* container */
+
+.mapa-container{
+position:relative;
+width:800px;
+margin:40px auto;
+}
+
+/* imagem */
+
+.mapa{
+width:100%;
+border-radius:20px;
+}
+
+/* pontos */
+
+.ponto{
+position:absolute;
+width:18px;
+height:18px;
+background:gold;
+border-radius:50%;
+cursor:pointer;
+box-shadow:0 0 10px gold;
+transition:0.3s;
+}
+
+.ponto:hover{
+transform:scale(1.5);
+}
+
+/* caixa info */
+
+#info{
+margin-top:20px;
+padding:20px;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+background:#111;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Mapa da Terra do Nunca</h1>
+
+<div class="mapa-container">
+
+<img class="mapa"
+src="ChatGPT Image 5 de mar. de 2026, 13_34_39.png">
+
+<div class="ponto" style="top:250px; left:300px"
+onclick="mostrar('meninos')"></div>
+
+<div class="ponto" style="top:350px; left:550px"
+onclick="mostrar('navio')"></div>
+
+<div class="ponto" style="top:180px; left:600px"
+onclick="mostrar('sereias')"></div>
+
+</div>
+
+<div id="info">
+Clique em um ponto para descobrir o local.
+</div>
+
+<script>
+
+function mostrar(local){
+
+let info=document.getElementById("info")
+
+if(local=="meninos"){
+info.innerHTML="<h2>Meninos Perdidos</h2><p>O esconderijo dos amigos de Peter Pan.</p>"
+}
+
+if(local=="navio"){
+info.innerHTML="<h2>Navio Pirata</h2><p>O navio do Capitão Gancho.</p>"
+}
+
+if(local=="sereias"){
+info.innerHTML="<h2>Lago das Sereias</h2><p>Um lago mágico cheio de mistérios.</p>"
+}
+
+}
+
+</script>
+
+</body>
+</html>

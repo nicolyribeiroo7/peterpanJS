@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>História de Peter Pan</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#021024;
+color:white;
+text-align:center;
+padding:40px;
+overflow-x:hidden;
+}
+
+/* estrelas */
+
+.estrela{
+position:fixed;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:piscando 2s infinite alternate;
+}
+
+@keyframes piscando{
+
+from{
+opacity:0.2;
+}
+
+to{
+opacity:1;
+}
+
+}
+
+/* linha do tempo */
+
+.timeline{
+max-width:700px;
+margin:auto;
+}
+
+.capitulo{
+
+background:rgba(0,0,0,0.6);
+padding:20px;
+margin:40px 0;
+border-radius:12px;
+cursor:pointer;
+box-shadow:0 0 10px #00eaff;
+
+/* animação inicial */
+
+opacity:0;
+transform:translateY(50px);
+transition:0.6s;
+
+}
+
+.capitulo.visivel{
+opacity:1;
+transform:translateY(0);
+}
+
+.capitulo:hover{
+transform:scale(1.03);
+}
+
+.conteudo{
+display:none;
+margin-top:10px;
+line-height:1.5;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>📖 A História de Peter Pan</h1>
+
+<div class="timeline">
+
+<div class="capitulo" onclick="abrir(this)">
+<h2>🌙 Wendy conhece Peter Pan</h2>
+<div class="conteudo">
+Peter Pan aparece na casa dos Darling e conhece Wendy, John e Michael. Ele conta histórias sobre a Terra do Nunca.
+</div>
+</div>
+
+<div class="capitulo" onclick="abrir(this)">
+<h2>✨ Viagem para a Terra do Nunca</h2>
+<div class="conteudo">
+Com o pó mágico de Sininho, todos aprendem a voar e seguem Peter Pan até a ilha mágica.
+</div>
+</div>
+
+<div class="capitulo" onclick="abrir(this)">
+<h2>🧒 Os Meninos Perdidos</h2>
+<div class="conteudo">
+Wendy conhece os Meninos Perdidos, que vivem aventuras incríveis na Terra do Nunca.
+</div>
+</div>
+
+<div class="capitulo" onclick="abrir(this)">
+<h2>🏴‍☠️ Capitão Gancho</h2>
+<div class="conteudo">
+O Capitão Gancho é o maior inimigo de Peter Pan e tenta capturá-lo.
+</div>
+</div>
+
+<div class="capitulo" onclick="abrir(this)">
+<h2>🏠 Retorno para casa</h2>
+<div class="conteudo">
+Depois das aventuras, Wendy e seus irmãos voltam para casa.
+</div>
+</div>
+
+</div>
+
+<script>
+
+/* abrir história */
+
+function abrir(elemento){
+
+let conteudo = elemento.querySelector(".conteudo")
+
+if(conteudo.style.display==="block"){
+conteudo.style.display="none"
+}else{
+conteudo.style.display="block"
+}
+
+}
+
+/* animação ao rolar */
+
+const capitulos = document.querySelectorAll(".capitulo")
+
+function mostrarAoRolar(){
+
+const topoTela = window.innerHeight * 0.85
+
+capitulos.forEach(cap => {
+
+const topo = cap.getBoundingClientRect().top
+
+if(topo < topoTela){
+cap.classList.add("visivel")
+}
+
+})
+
+}
+
+window.addEventListener("scroll",mostrarAoRolar)
+
+mostrarAoRolar()
+
+/* estrelas no fundo */
+
+for(let i=0;i<120;i++){
+
+let estrela=document.createElement("div")
+estrela.classList.add("estrela")
+
+estrela.style.left=Math.random()*100+"vw"
+estrela.style.top=Math.random()*100+"vh"
+
+estrela.style.animationDuration=
+(Math.random()*3+1)+"s"
+
+document.body.appendChild(estrela)
+
+}
+
+</script>
+
+</body>
+</html>
